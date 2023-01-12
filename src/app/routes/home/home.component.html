@@ -1,0 +1,15 @@
+<button mat-raised-button>Create new diagram</button>
+<ul>
+  <li *ngFor="let diagram of diagrams">
+    <app-diagram-card
+      [title]="diagram.title"
+      [id]="diagram.id"
+    ></app-diagram-card>
+  </li>
+</ul>
+<mat-paginator
+  (page)="handlePageEvent($event)"
+  [pageIndex]="pageIndex"
+  [pageSize]="limitPerPage"
+  [length]="totalPages"
+></mat-paginator>
