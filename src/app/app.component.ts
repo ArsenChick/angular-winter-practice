@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { APP_ROUTES } from './constants/routes'
+import { AppRoutes } from './constants/routes'
 
 @Component({
   selector: 'app-root',
@@ -7,5 +7,5 @@ import { APP_ROUTES } from './constants/routes'
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  public homeRouterLink = `/${APP_ROUTES.home}`
+  public homeRouterLink = `/${AppRoutes.home}`
 }

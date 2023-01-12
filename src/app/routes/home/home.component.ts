@@ -1,24 +1,32 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, OnDestroy } from '@angular/core'
+import { Subscription } from 'rxjs'
 import { PageEvent } from '@angular/material/paginator'
 
 import { Diagram } from 'src/app/interfaces/diagram.interface'
-import { DiagramListService } from './diagram.service'
+import { DiagramApiService } from '../../diagram-api.service'
+import { PaginatorInitValues } from 'src/app/constants/home-page'
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
-  pageIndex = 0
-  limitPerPage = 5
-  totalPages = 0
+export class HomeComponent implements OnInit, OnDestroy {
+  pageIndex = PaginatorInitValues.pageIndex
+  limitPerPage = PaginatorInitValues.limitPerPage
+  totalEntries = PaginatorInitValues.totalEntries
   diagrams: Diagram[] = []
 
-  constructor(private diagramService: DiagramListService) {}
+  subscription$?: Subscription
+
+  constructor(private diagramService: DiagramApiService) {}
 
   ngOnInit(): void {
     this.getDiagramsDataFromServer(this.pageIndex, this.limitPerPage)
+  }
+
+  ngOnDestroy(): void {
+    this.subscription$?.unsubscribe()
   }
 
   handlePageEvent(e: PageEvent) {
@@ -27,11 +35,11 @@ export class HomeComponent implements OnInit {
   }
 
   private getDiagramsDataFromServer(page: number, limitPerPage: number) {
-    this.diagramService
+    this.subscription$ = this.diagramService
       .getDiagramsPage(page + 1, limitPerPage)
-      .subscribe((tuple) => {
-        this.totalPages = tuple[0]
-        this.diagrams = tuple[1]
+      .subscribe((diagramListObject) => {
+        this.totalEntries = diagramListObject.totalEntries
+        this.diagrams = diagramListObject.diagrams
       })
   }
 }

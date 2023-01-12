@@ -1,5 +1,5 @@
 <button mat-raised-button>Create new diagram</button>
-<div *ngIf="diagrams.length !== 0; else noCharts">
+<div *ngIf="diagrams.length !== 0; else noDiagrams">
   <ul>
     <li *ngFor="let diagram of diagrams">
       <app-diagram-card
@@ -12,10 +12,10 @@
     (page)="handlePageEvent($event)"
     [pageIndex]="pageIndex"
     [pageSize]="limitPerPage"
-    [length]="totalPages"
+    [length]="totalEntries"
   ></mat-paginator>
 </div>
-<ng-template #noCharts>
+<ng-template #noDiagrams>
   <div class="empty-list">
     No diagrams yet! Click the button above to create one
     (currently not working)

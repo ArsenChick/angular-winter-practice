@@ -1,4 +1,4 @@
-export const APP_ROUTES = {
+export const AppRoutes = {
   home: 'home',
   diagram: 'diagram/:id',
 }
