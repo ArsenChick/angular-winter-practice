@@ -22,7 +22,7 @@ export const InitLineProps: LineProps = {
   strokeWidth: 0
 }
 
-export const InitReactangleProps: RectangleProps = {
+export const InitRectangleProps: RectangleProps = {
   x: 0,
   y: 0,
   height: 0,

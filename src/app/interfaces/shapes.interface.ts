@@ -1,4 +1,4 @@
-import { InitEllipseProps, InitLineProps, InitReactangleProps } from "../constants/shape-consts"
+import { InitEllipseProps, InitLineProps, InitRectangleProps } from "../constants/shape-consts"
 
 interface Shape<T> {
   readonly type: string
@@ -7,17 +7,29 @@ interface Shape<T> {
 
 export class Ellipse implements Shape<EllipseProps> {
   type = "ellipse"
-  properties = InitEllipseProps
+  properties: EllipseProps
+
+  constructor(props = InitEllipseProps) {
+    this.properties = props
+  }
 }
 
 export class Line implements Shape<LineProps> {
   type = "line"
-  properties = InitLineProps
+  properties: LineProps
+
+  constructor(props = InitLineProps) {
+    this.properties = props
+  }
 }
 
 export class Rectangle implements Shape<RectangleProps> {
   type = "rectangle"
-  properties = InitReactangleProps
+  properties: RectangleProps
+
+  constructor(props = InitRectangleProps) {
+    this.properties = props
+  }
 }
 
 interface BaseProps {

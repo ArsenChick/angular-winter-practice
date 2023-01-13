@@ -36,12 +36,11 @@ export class DiagramApiService {
 
   private handleError() {
     return (
-      error: any
+      error: { message: string }
     ): Observable<{ totalEntries: number; diagrams: Diagram[] }> => {
       this.alertService.danger(
         `Request failed: ${error.message}. Please try again`
       )
-      console.error(`Request failed: ${error.message}`)
       return of({ totalEntries: 0, diagrams: [] })
     }
   }
