@@ -1,51 +1,75 @@
 import { InitEllipseProps, InitLineProps, InitRectangleProps } from "../constants/shape-consts"
 
-interface Shape<T> {
-  readonly type: string
+export interface IShape {
+  readonly type: ShapeType
+}
+
+export interface ITypedShape<T> extends IShape {
   properties: T
 }
 
-export class Ellipse implements Shape<EllipseProps> {
-  type = "ellipse"
-  properties: EllipseProps
+export enum ShapeType {
+  Ellipse = "ellipse",
+  Line = "line",
+  Rectangle = "rectangle"
+}
 
-  constructor(props = InitEllipseProps) {
+export class Ellipse implements ITypedShape<IEllipseProps> {
+  type = ShapeType.Ellipse
+  properties: IEllipseProps
+
+  constructor(props: IEllipseProps = InitEllipseProps) {
     this.properties = props
   }
 }
 
-export class Line implements Shape<LineProps> {
-  type = "line"
-  properties: LineProps
+export class Line implements ITypedShape<ILineProps> {
+  type = ShapeType.Line
+  properties: ILineProps
 
-  constructor(props = InitLineProps) {
+  constructor(props: ILineProps = InitLineProps) {
     this.properties = props
   }
 }
 
-export class Rectangle implements Shape<RectangleProps> {
-  type = "rectangle"
-  properties: RectangleProps
+export class Rectangle implements ITypedShape<IRectangleProps> {
+  type = ShapeType.Rectangle
+  properties: IRectangleProps
 
-  constructor(props = InitRectangleProps) {
+  constructor(props: IRectangleProps = InitRectangleProps) {
     this.properties = props
   }
 }
 
-interface BaseProps {
+export class ShapeFactory {
+  static create(type: ShapeType, props?: IBaseProps) {
+    switch (type) {
+      case ShapeType.Ellipse:
+        return props ? new Ellipse(props as IEllipseProps) : new Ellipse()
+      case ShapeType.Line:
+        return props ? new Line(props as ILineProps) : new Line()
+      case ShapeType.Rectangle:
+        return props ? new Rectangle(props as IRectangleProps): new Rectangle()
+      default:
+        return null
+    }
+  }
+}
+
+export interface IBaseProps {
   strokeColor: string
   strokeWidth: number
   fill?: string
 }
 
-export interface EllipseProps extends BaseProps {
+export interface IEllipseProps extends IBaseProps {
   x: number
   y: number
   rx: number
   ry: number
 }
 
-export interface LineProps extends BaseProps {
+export interface ILineProps extends IBaseProps {
   start: {
     x: number
     y: number
@@ -56,7 +80,7 @@ export interface LineProps extends BaseProps {
   }
 }
 
-export interface RectangleProps extends BaseProps {
+export interface IRectangleProps extends IBaseProps {
   x: number
   y: number
   height: number

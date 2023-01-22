@@ -1,7 +1,18 @@
-import { Ellipse, Line, Rectangle } from './shapes.interface'
+import { IShape } from './shapes.interface'
 
-export interface Diagram {
+export interface IDiagram {
   id: string
   title: string
-  components: (Ellipse | Line | Rectangle)[]
+  components: IShape[]
+}
+
+export interface IIdShape {
+  id: number | null
+  shape: IShape
+}
+
+export interface IDrawableDiagram {
+  id: string
+  title: string
+  components: IIdShape[]
 }

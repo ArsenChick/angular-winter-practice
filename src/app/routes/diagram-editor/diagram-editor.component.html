@@ -1,6 +1,11 @@
 <div class="route-container">
   <div class="diagram-container">
-    <app-svg-diagram class="svg-container"></app-svg-diagram>
-    <app-sidebar class="sidebar-container"></app-sidebar>
+    <app-shapes-sidebar class="shapes-sidebar-container"></app-shapes-sidebar>
+    <app-svg-diagram
+      class="svg-container"
+      [selectedShapeId]="selectedId"
+      [shapes]="shapesToDraw"
+    ></app-svg-diagram>
+    <app-props-sidebar class="props-sidebar-container"></app-props-sidebar>
   </div>
 </div>

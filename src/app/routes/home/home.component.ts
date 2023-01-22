@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core'
 import { Subscription } from 'rxjs'
 import { PageEvent } from '@angular/material/paginator'
 
-import { Diagram } from 'src/app/interfaces/diagram.interface'
+import { IDiagram } from 'src/app/interfaces/diagram.interface'
 import { DiagramApiService } from '../../diagram-api.service'
 import { PaginatorInitValues } from 'src/app/constants/home-page'
 
@@ -15,17 +15,17 @@ export class HomeComponent implements OnInit, OnDestroy {
   pageIndex = PaginatorInitValues.pageIndex
   limitPerPage = PaginatorInitValues.limitPerPage
   totalEntries = PaginatorInitValues.totalEntries
-  diagrams: Diagram[] = []
+  diagrams: IDiagram[] = []
 
   subscription$?: Subscription
 
   constructor(private diagramService: DiagramApiService) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getDiagramsDataFromServer(this.pageIndex, this.limitPerPage)
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.subscription$?.unsubscribe()
   }
 
