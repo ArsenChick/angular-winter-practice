@@ -3,8 +3,8 @@
     <app-shapes-sidebar class="shapes-sidebar-container"></app-shapes-sidebar>
     <app-svg-diagram
       class="svg-container"
-      [selectedShapeId]="selectedId"
-      [shapes]="shapesToDraw"
+      [selectedShapeId]="selectedId$ | async"
+      [shapes]="diagramState$ | async"
     ></app-svg-diagram>
     <app-props-sidebar class="props-sidebar-container"></app-props-sidebar>
   </div>

@@ -22,7 +22,7 @@ export class SvgDiagramComponent {
   get shapes(): IIdShape[] {
     return this._shapes
   }
-  set shapes(newShapes: IIdShape[]) {
+  set shapes(newShapes: IIdShape[] | null) {
     this._shapes = newShapes ?? []
     this.drawDiagram()
   }

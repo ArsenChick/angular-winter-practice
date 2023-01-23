@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
-import { Subscription } from 'rxjs'
+import { map, Subscription } from 'rxjs'
 
 import { RouteParams } from 'src/app/constants/routes'
 import { IIdShape } from 'src/app/interfaces/diagram.interface'
@@ -15,11 +15,14 @@ import { DiagramStateService } from './diagram-state.service'
 })
 export class DiagramEditorComponent implements OnInit, OnDestroy {
   private apiSubscription$?: Subscription
-  private shapesSubscription$?: Subscription
-  private selectedShapeSubscription$?: Subscription
 
   shapesToDraw: IIdShape[] = []
   selectedId: number | null = null
+
+  diagramState$ = this.diagramStateService.diagramState.pipe(
+    map(diagram => diagram ? diagram.components : [])
+  )
+  selectedId$ = this.diagramStateService.selectedShapeId
   noRouteParam = false
 
   constructor(
@@ -39,20 +42,9 @@ export class DiagramEditorComponent implements OnInit, OnDestroy {
       .subscribe((diagram) =>
         this.diagramStateService.initializeDiagramData(diagram)
       )
-    this.selectedShapeSubscription$ =
-      this.diagramStateService.selectedShapeId.subscribe((selectedId) => {
-        this.selectedId = selectedId
-      })
-    this.shapesSubscription$ = this.diagramStateService.diagramState.subscribe(
-      (diagramToDraw) => {
-        this.shapesToDraw = diagramToDraw ? diagramToDraw.components : []
-      }
-    )
   }
 
   ngOnDestroy(): void {
     this.apiSubscription$?.unsubscribe()
-    this.shapesSubscription$?.unsubscribe()
-    this.selectedShapeSubscription$?.unsubscribe()
   }
 }
