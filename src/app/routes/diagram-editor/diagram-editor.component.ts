@@ -45,8 +45,7 @@ export class DiagramEditorComponent implements OnInit, OnDestroy {
       })
     this.shapesSubscription$ = this.diagramStateService.diagramState.subscribe(
       (diagramToDraw) => {
-        const newValues = diagramToDraw?.components
-        this.shapesToDraw = newValues ? Array.from(newValues) : []
+        this.shapesToDraw = diagramToDraw ? diagramToDraw.components : []
       }
     )
   }

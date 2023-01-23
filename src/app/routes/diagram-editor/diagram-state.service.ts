@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core'
+import { cloneDeep } from 'lodash'
 import { Subject } from 'rxjs'
 
 import {
@@ -52,7 +53,7 @@ export class DiagramStateService {
   }
 
   private notifyAboutDiagramChange(): void {
-    this._diagramState$.next(this.diagram)
+    this._diagramState$.next(cloneDeep(this.diagram))
   }
 
   private notifyAboutSelectedChange(id: number | null): void {
