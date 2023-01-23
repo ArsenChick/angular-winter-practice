@@ -1,5 +1,14 @@
 <ng-template #template>
-  <svg:g>
+  <svg:g (click)="selectShape($event)">
+    <svg:rect
+      [attr.x]="shape.properties.x"
+      [attr.y]="shape.properties.y"
+      [attr.width]="shape.properties.width"
+      [attr.height]="shape.properties.height"
+      [attr.stroke]="shape.properties.strokeColor"
+      [attr.stroke-width]="shape.properties.strokeWidth"
+      [attr.fill]="shape.properties.fill"
+    />
     <svg:rect
       *ngIf="isSelected"
       [attr.x]="selectRect.properties.x"
@@ -11,16 +20,6 @@
       [attr.fill]="selectRect.properties.fill"
       stroke-dasharray="10 10"
       fill-opacity="0"
-    />
-    <svg:rect
-      (click)="selectShape()"
-      [attr.x]="shape.properties.x"
-      [attr.y]="shape.properties.y"
-      [attr.width]="shape.properties.width"
-      [attr.height]="shape.properties.height"
-      [attr.stroke]="shape.properties.strokeColor"
-      [attr.stroke-width]="shape.properties.strokeWidth"
-      [attr.fill]="shape.properties.fill"
     />
   </svg:g>
 </ng-template>

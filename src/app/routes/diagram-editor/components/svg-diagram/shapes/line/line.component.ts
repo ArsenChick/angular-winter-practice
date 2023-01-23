@@ -65,7 +65,8 @@ export class LineComponent
     this.subscription$?.unsubscribe()
   }
 
-  selectShape(): void {
+  selectShape(event: MouseEvent): void {
+    event.stopPropagation()
     if (this.isSelected) this.diagramStateService.selectShape(null)
     else this.diagramStateService.selectShape(this.data.id)
   }

@@ -1,5 +1,6 @@
 import { Component, ComponentRef, Input, ViewChild } from '@angular/core'
 
+import { DiagramStateService } from '../../diagram-state.service'
 import { DynamicShapeDirective } from './dynamic-shape.directive'
 import { IGeneralShapeComponent } from './shapes/general-shape.component'
 
@@ -25,6 +26,12 @@ export class SvgDiagramComponent {
   set shapes(newShapes: IIdShape[] | null) {
     this._shapes = newShapes ?? []
     this.drawDiagram()
+  }
+
+  constructor (private diagramStateService: DiagramStateService) {}
+
+  unselectShapes(): void {
+    this.diagramStateService.selectShape(null)
   }
 
   private drawDiagram(): void {

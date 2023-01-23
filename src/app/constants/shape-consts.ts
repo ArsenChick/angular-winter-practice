@@ -13,8 +13,8 @@ const DefaultBaseProps: IBaseProps = {
 }
 
 export const SelectedRectBaseProps = {
-  strokeColor: '#0398fc',
-  strokeWidth: 2,
+  strokeColor: '#36e1ff',
+  strokeWidth: 4,
   fill: '',
 }
 
