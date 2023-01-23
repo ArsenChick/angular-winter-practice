@@ -17,24 +17,24 @@ export class HomeComponent implements OnInit, OnDestroy {
   totalEntries = PaginatorInitValues.totalEntries
   diagrams: IDiagram[] = []
 
-  subscription$?: Subscription
+  private subscription$?: Subscription
 
   constructor(private diagramService: DiagramApiService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getDiagramsDataFromServer(this.pageIndex, this.limitPerPage)
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subscription$?.unsubscribe()
   }
 
-  handlePageEvent(e: PageEvent) {
+  handlePageEvent(e: PageEvent): void {
     this.pageIndex = e.pageIndex
     this.getDiagramsDataFromServer(this.pageIndex, this.limitPerPage)
   }
 
-  private getDiagramsDataFromServer(page: number, limitPerPage: number) {
+  private getDiagramsDataFromServer(page: number, limitPerPage: number): void {
     this.subscription$ = this.diagramService
       .getDiagramsPage(page + 1, limitPerPage)
       .subscribe((diagramListObject) => {

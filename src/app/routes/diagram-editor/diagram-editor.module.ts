@@ -14,9 +14,9 @@ import { PropsSidebarComponent } from './components/props-sidebar/props-sidebar.
 import { ShapesSidebarComponent } from './components/shapes-sidebar/shapes-sidebar.component'
 import { RectangleComponent } from './components/svg-diagram/shapes/rectangle/rectangle.component'
 import { EllipseComponent } from './components/svg-diagram/shapes/ellipse/ellipse.component'
-
-import { DynamicShapeDirective } from './components/svg-diagram/dynamic-shape.directive';
 import { LineComponent } from './components/svg-diagram/shapes/line/line.component'
+
+import { DynamicShapeDirective } from './components/svg-diagram/dynamic-shape.directive'
 
 @NgModule({
   declarations: [

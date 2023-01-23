@@ -4,6 +4,7 @@ import { Subject } from 'rxjs'
 import {
   IDiagram,
   IDrawableDiagram,
+  IIdShape,
 } from 'src/app/interfaces/diagram.interface'
 import { ShapeFactory, ShapeType } from 'src/app/interfaces/shapes.interface'
 
@@ -14,24 +15,24 @@ export class DiagramStateService {
   private diagram: IDrawableDiagram | null = null
 
   private _diagramState$: Subject<IDrawableDiagram | null> = new Subject()
-  public get diagramState() {
+  get diagramState() {
     return this._diagramState$.asObservable()
   }
-
   private _selectedShapeId$: Subject<number | null> = new Subject()
-  public get selectedShapeId() {
+  get selectedShapeId() {
     return this._selectedShapeId$.asObservable()
   }
 
-  initializeDiagramData({ id, title, components }: IDiagram) {
-    const newComponents = components.map((shape, index) => {
-      return { id: index, shape }
-    })
+  initializeDiagramData({ id, title, components }: IDiagram): void {
+    const newComponents = components.map((shape, index) => ({
+      id: index,
+      shape,
+    }))
     this.diagram = { id, title, components: newComponents }
     this.notifyAboutDiagramChange()
   }
 
-  addShape(type: ShapeType) {
+  addShape(type: ShapeType): void {
     if (this.diagram === null) return
     const shape = ShapeFactory.create(type)
     const id = this.diagram.components.length
@@ -40,21 +41,21 @@ export class DiagramStateService {
     this.notifyAboutDiagramChange()
   }
 
-  getShape(id: number) {
+  getShape(id: number): IIdShape | null {
     if (this.diagram === null) return null
     const idFound = this.diagram.components.find((shape) => shape.id === id)
     return idFound ?? null
   }
 
-  selectShape(newSelectId: number | null = null) {
+  selectShape(newSelectId: number | null = null): void {
     this.notifyAboutSelectedChange(newSelectId ?? null)
   }
 
-  private notifyAboutDiagramChange() {
+  private notifyAboutDiagramChange(): void {
     this._diagramState$.next(this.diagram)
   }
 
-  private notifyAboutSelectedChange(id: number | null) {
+  private notifyAboutSelectedChange(id: number | null): void {
     this._selectedShapeId$.next(id)
   }
 }

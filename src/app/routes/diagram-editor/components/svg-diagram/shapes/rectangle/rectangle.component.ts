@@ -26,6 +26,10 @@ import {
 export class RectangleComponent
   implements IGeneralShapeComponent, OnInit, OnDestroy
 {
+  @ViewChild('template', { static: true })
+  template!: TemplateRef<RectangleComponent>
+  private subscription$?: Subscription
+
   id: number | null = null
   shape: Rectangle = new Rectangle(NullRectangleProps)
   selectRect: Rectangle = new Rectangle(NullRectangleProps)
@@ -39,19 +43,14 @@ export class RectangleComponent
     this.shape = shape as Rectangle
     this.selectRect = this.getPath()
   }
-
   @Input() isSelected = false
-
-  @ViewChild('template', { static: true })
-  template!: TemplateRef<RectangleComponent>
-  subscription$?: Subscription
 
   constructor(
     private vcr: ViewContainerRef,
     private diagramStateService: DiagramStateService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.vcr.createEmbeddedView(this.template)
     this.subscription$ = this.diagramStateService.selectedShapeId.subscribe(
       (id) => {
@@ -61,16 +60,16 @@ export class RectangleComponent
     )
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subscription$?.unsubscribe()
   }
 
-  selectShape() {
+  selectShape(): void {
     if (this.isSelected) this.diagramStateService.selectShape(null)
     else this.diagramStateService.selectShape(this.data.id)
   }
 
-  private getPath() {
+  private getPath(): Rectangle {
     return new Rectangle({
       ...this.shape.properties,
       ...SelectedRectBaseProps,

@@ -14,9 +14,9 @@ import { DiagramStateService } from './diagram-state.service'
   styleUrls: ['./diagram-editor.component.scss'],
 })
 export class DiagramEditorComponent implements OnInit, OnDestroy {
-  apiSubscription$?: Subscription
-  shapesSubscription$?: Subscription
-  selectedShapeSubscription$?: Subscription
+  private apiSubscription$?: Subscription
+  private shapesSubscription$?: Subscription
+  private selectedShapeSubscription$?: Subscription
 
   shapesToDraw: IIdShape[] = []
   selectedId: number | null = null
@@ -28,7 +28,7 @@ export class DiagramEditorComponent implements OnInit, OnDestroy {
     private diagramStateService: DiagramStateService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     const diagramId = this.route.snapshot.paramMap.get(RouteParams.diagram.id)
     if (diagramId === null) {
       this.noRouteParam = true
@@ -51,7 +51,7 @@ export class DiagramEditorComponent implements OnInit, OnDestroy {
     )
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.apiSubscription$?.unsubscribe()
     this.shapesSubscription$?.unsubscribe()
     this.selectedShapeSubscription$?.unsubscribe()

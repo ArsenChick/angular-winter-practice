@@ -1,4 +1,4 @@
-import { IIdShape } from "src/app/interfaces/diagram.interface";
+import { IIdShape } from 'src/app/interfaces/diagram.interface'
 
 export interface IGeneralShapeComponent {
   data: IIdShape

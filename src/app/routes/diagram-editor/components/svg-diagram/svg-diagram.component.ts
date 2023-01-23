@@ -12,22 +12,22 @@ import { IIdShape } from 'src/app/interfaces/diagram.interface'
   styleUrls: ['./svg-diagram.component.scss'],
 })
 export class SvgDiagramComponent {
-  private componentRefs: ComponentRef<IGeneralShapeComponent>[] = []
   @ViewChild(DynamicShapeDirective, { static: true })
   shapeHost!: DynamicShapeDirective
+  private componentRefs: ComponentRef<IGeneralShapeComponent>[] = []
 
+  @Input() selectedShapeId: number | null = null
   private _shapes: IIdShape[] = []
   @Input()
-  get shapes() {
+  get shapes(): IIdShape[] {
     return this._shapes
   }
   set shapes(newShapes: IIdShape[]) {
     this._shapes = newShapes ?? []
     this.drawDiagram()
   }
-  @Input() selectedShapeId: number | null = null
 
-  private drawDiagram() {
+  private drawDiagram(): void {
     const vcr = this.shapeHost.viewContainerRef
     vcr.clear()
     this.destroyShapes()
@@ -43,8 +43,8 @@ export class SvgDiagramComponent {
     })
   }
 
-  private destroyShapes() {
-    this.componentRefs.forEach((cr) => cr.destroy())
+  private destroyShapes(): void {
+    this.componentRefs.map((cr) => cr.destroy())
     this.componentRefs = []
   }
 }

@@ -11,15 +11,15 @@ import { ShapeType } from 'src/app/interfaces/shapes.interface'
 export class ShapesSidebarComponent {
   constructor(private diagramStateService: DiagramStateService) {}
 
-  addEllipse() {
+  addEllipse(): void {
     this.diagramStateService.addShape(ShapeType.Ellipse)
   }
 
-  addLine() {
+  addLine(): void {
     this.diagramStateService.addShape(ShapeType.Line)
   }
 
-  addRectangle() {
+  addRectangle(): void {
     this.diagramStateService.addShape(ShapeType.Rectangle)
   }
 }
