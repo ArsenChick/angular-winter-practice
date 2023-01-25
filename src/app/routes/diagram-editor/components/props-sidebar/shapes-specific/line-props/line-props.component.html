@@ -1,0 +1,26 @@
+<form [formGroup]="ellipseProps" (input)="sendValueToParent()">
+  <div class="field-container">
+    <label for="x1">Start X: </label>
+    <mat-form-field class="no-bottom-space" appearance="outline">
+      <input matInput id="x1" type="number" formControlName="x1" />
+    </mat-form-field>
+  </div>
+  <div class="field-container">
+    <label for="y1">Start Y: </label>
+    <mat-form-field class="no-bottom-space" appearance="outline">
+      <input matInput id="y1" type="number" formControlName="y1" />
+    </mat-form-field>
+  </div>
+  <div class="field-container">
+    <label for="x2">End X: </label>
+    <mat-form-field class="no-bottom-space" appearance="outline">
+      <input matInput id="x2" type="number" formControlName="x2" />
+    </mat-form-field>
+  </div>
+  <div class="field-container">
+    <label for="y2">End Y: </label>
+    <mat-form-field class="no-bottom-space" appearance="outline">
+      <input matInput id="y2" type="number" formControlName="y2" />
+    </mat-form-field>
+  </div>
+</form>

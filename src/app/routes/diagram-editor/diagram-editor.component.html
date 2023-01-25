@@ -6,6 +6,9 @@
       [selectedShapeId]="selectedId$ | async"
       [shapes]="diagramState$ | async"
     ></app-svg-diagram>
-    <app-props-sidebar class="props-sidebar-container"></app-props-sidebar>
+    <app-props-sidebar
+      class="props-sidebar-container"
+      [selectedShapeId]="selectedId$ | async"
+    ></app-props-sidebar>
   </div>
 </div>

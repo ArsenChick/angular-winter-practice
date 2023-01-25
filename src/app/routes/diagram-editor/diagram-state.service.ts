@@ -1,13 +1,18 @@
 import { Injectable } from '@angular/core'
 import { cloneDeep } from 'lodash'
 import { Subject } from 'rxjs'
+import { DefaultBaseProps } from 'src/app/constants/shape-consts'
 
 import {
   IDiagram,
   IDrawableDiagram,
   IIdShape,
 } from 'src/app/interfaces/diagram.interface'
-import { ShapeFactory, ShapeType } from 'src/app/interfaces/shapes.interface'
+import {
+  IBaseProps,
+  ShapeFactory,
+  ShapeType,
+} from 'src/app/interfaces/shapes.interface'
 
 @Injectable({
   providedIn: 'root',
@@ -42,8 +47,24 @@ export class DiagramStateService {
     this.notifyAboutDiagramChange()
   }
 
-  getShape(id: number): IIdShape | null {
-    if (this.diagram === null) return null
+  updateShape(id: number, props?: IBaseProps): void {
+    if (this.diagram === null) return
+    this.diagram.components = this.diagram.components.map((component) => {
+      if (component.id !== id) return component
+      else {
+        const properties = props ?? DefaultBaseProps
+        const shape = {
+          type: component.shape.type,
+          properties: cloneDeep(properties),
+        }
+        return { id, shape }
+      }
+    })
+    this.notifyAboutDiagramChange()
+  }
+
+  getShape(id: number | null): IIdShape | null {
+    if (this.diagram === null || id === null) return null
     const idFound = this.diagram.components.find((shape) => shape.id === id)
     return idFound ?? null
   }

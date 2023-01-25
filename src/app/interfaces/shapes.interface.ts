@@ -2,10 +2,7 @@ import { InitEllipseProps, InitLineProps, InitRectangleProps } from "../constant
 
 export interface IShape {
   readonly type: ShapeType
-}
-
-export interface ITypedShape<T> extends IShape {
-  properties: T
+  properties?: IBaseProps
 }
 
 export enum ShapeType {
@@ -14,7 +11,7 @@ export enum ShapeType {
   Rectangle = "rectangle"
 }
 
-export class Ellipse implements ITypedShape<IEllipseProps> {
+export class Ellipse implements IShape {
   type = ShapeType.Ellipse
   properties: IEllipseProps
 
@@ -23,7 +20,7 @@ export class Ellipse implements ITypedShape<IEllipseProps> {
   }
 }
 
-export class Line implements ITypedShape<ILineProps> {
+export class Line implements IShape {
   type = ShapeType.Line
   properties: ILineProps
 
@@ -32,7 +29,7 @@ export class Line implements ITypedShape<ILineProps> {
   }
 }
 
-export class Rectangle implements ITypedShape<IRectangleProps> {
+export class Rectangle implements IShape {
   type = ShapeType.Rectangle
   properties: IRectangleProps
 

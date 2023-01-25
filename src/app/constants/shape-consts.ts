@@ -6,7 +6,7 @@ import {
   IRectangleProps,
 } from '../interfaces/shapes.interface'
 
-const DefaultBaseProps: IBaseProps = {
+export const DefaultBaseProps: IBaseProps = {
   strokeColor: '#4a4a4a',
   strokeWidth: 2,
   fill: '#ff4747',
@@ -18,7 +18,7 @@ export const SelectedRectBaseProps = {
   fill: '',
 }
 
-const NullBaseProps: IBaseProps = {
+export const NullBaseProps: IBaseProps = {
   strokeColor: '',
   strokeWidth: 0,
 }
