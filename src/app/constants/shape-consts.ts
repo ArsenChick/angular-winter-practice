@@ -6,38 +6,38 @@ import {
   IRectangleProps,
 } from '../interfaces/shapes.interface'
 
-export const DefaultBaseProps: IBaseProps = {
+export const DEFAULT_BASE_PROPS: IBaseProps = {
   strokeColor: '#4a4a4a',
   strokeWidth: 2,
   fill: '#ff4747',
 }
 
-export const SelectedRectBaseProps = {
+export const SELECT_RECT_BASE_PROPS = {
   strokeColor: '#36e1ff',
   strokeWidth: 4,
   fill: '',
 }
 
-export const NullBaseProps: IBaseProps = {
+export const NULL_BASE_PROPS: IBaseProps = {
   strokeColor: '',
   strokeWidth: 0,
 }
 
-export const EmptyDiagram: IDiagram = {
+export const EMPTY_DIAGRAM: IDiagram = {
   id: '',
   title: '',
   components: [],
 }
 
-export const InitEllipseProps: IEllipseProps = {
+export const DEFAULT_ELLIPSE_PROPS: IEllipseProps = {
   x: 150,
   y: 150,
   rx: 100,
   ry: 100,
-  ...DefaultBaseProps,
+  ...DEFAULT_BASE_PROPS,
 }
 
-export const InitLineProps: ILineProps = {
+export const DEFAULT_LINE_PROPS: ILineProps = {
   start: {
     x: 100,
     y: 100,
@@ -46,26 +46,26 @@ export const InitLineProps: ILineProps = {
     x: 200,
     y: 200,
   },
-  ...DefaultBaseProps,
+  ...DEFAULT_BASE_PROPS,
 }
 
-export const InitRectangleProps: IRectangleProps = {
+export const DEFAULT_RECTANGLE_PROPS: IRectangleProps = {
   x: 100,
   y: 100,
   height: 100,
   width: 100,
-  ...DefaultBaseProps,
+  ...DEFAULT_BASE_PROPS,
 }
 
-export const NullEllipseProps: IEllipseProps = {
+export const NULL_ELLIPSE_PROPS: IEllipseProps = {
   x: 0,
   y: 0,
   rx: 0,
   ry: 0,
-  ...NullBaseProps,
+  ...NULL_BASE_PROPS,
 }
 
-export const NullLineProps: ILineProps = {
+export const NULL_LINE_PROPS: ILineProps = {
   start: {
     x: 0,
     y: 0,
@@ -74,13 +74,13 @@ export const NullLineProps: ILineProps = {
     x: 0,
     y: 0,
   },
-  ...NullBaseProps,
+  ...NULL_BASE_PROPS,
 }
 
-export const NullRectangleProps: IRectangleProps = {
+export const NULL_RECTANGLE_PROPS: IRectangleProps = {
   x: 0,
   y: 0,
   height: 0,
   width: 0,
-  ...NullBaseProps,
+  ...NULL_BASE_PROPS,
 }

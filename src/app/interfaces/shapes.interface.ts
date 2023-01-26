@@ -1,4 +1,8 @@
-import { InitEllipseProps, InitLineProps, InitRectangleProps } from "../constants/shape-consts"
+import {
+  DEFAULT_ELLIPSE_PROPS,
+  DEFAULT_LINE_PROPS,
+  DEFAULT_RECTANGLE_PROPS,
+} from '../constants/shape-consts'
 
 export interface IShape {
   readonly type: ShapeType
@@ -6,16 +10,16 @@ export interface IShape {
 }
 
 export enum ShapeType {
-  Ellipse = "ellipse",
-  Line = "line",
-  Rectangle = "rectangle"
+  Ellipse = 'ellipse',
+  Line = 'line',
+  Rectangle = 'rectangle',
 }
 
 export class Ellipse implements IShape {
   type = ShapeType.Ellipse
   properties: IEllipseProps
 
-  constructor(props: IEllipseProps = InitEllipseProps) {
+  constructor(props: IEllipseProps = DEFAULT_ELLIPSE_PROPS) {
     this.properties = props
   }
 }
@@ -24,7 +28,7 @@ export class Line implements IShape {
   type = ShapeType.Line
   properties: ILineProps
 
-  constructor(props: ILineProps = InitLineProps) {
+  constructor(props: ILineProps = DEFAULT_LINE_PROPS) {
     this.properties = props
   }
 }
@@ -33,23 +37,8 @@ export class Rectangle implements IShape {
   type = ShapeType.Rectangle
   properties: IRectangleProps
 
-  constructor(props: IRectangleProps = InitRectangleProps) {
+  constructor(props: IRectangleProps = DEFAULT_RECTANGLE_PROPS) {
     this.properties = props
-  }
-}
-
-export class ShapeFactory {
-  static create(type: ShapeType, props?: IBaseProps) {
-    switch (type) {
-      case ShapeType.Ellipse:
-        return props ? new Ellipse(props as IEllipseProps) : new Ellipse()
-      case ShapeType.Line:
-        return props ? new Line(props as ILineProps) : new Line()
-      case ShapeType.Rectangle:
-        return props ? new Rectangle(props as IRectangleProps): new Rectangle()
-      default:
-        return null
-    }
   }
 }
 

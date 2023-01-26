@@ -1,0 +1,27 @@
+<button mat-raised-button>Create new diagram</button>
+<ng-container
+  *ngIf="diagramListObject$ | async as diagramsObj; else noDiagrams"
+>
+  <div *ngIf="diagramsObj.diagrams.length !== 0; else noDiagrams">
+    <ul>
+      <li *ngFor="let diagram of diagramsObj.diagrams">
+        <app-diagram-card
+          [title]="diagram.title"
+          [id]="diagram.id"
+        ></app-diagram-card>
+      </li>
+    </ul>
+    <mat-paginator
+      (page)="handlePageEvent($event)"
+      [pageIndex]="pageIndex"
+      [pageSize]="limitPerPage"
+      [length]="diagramsObj.totalEntries"
+    ></mat-paginator>
+  </div>
+</ng-container>
+<ng-template #noDiagrams>
+  <div class="empty-list">
+    No diagrams yet! Click the button above to create one (currently not
+    working)
+  </div>
+</ng-template>

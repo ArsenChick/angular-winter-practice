@@ -1,5 +1,11 @@
-const hostAddress = 'http://localhost:3000'
+const HOST_ADDRESS = 'http://localhost:3000'
 
 export const URLS = {
-  diagrams: `${hostAddress}/diagrams`,
+  diagrams: `${HOST_ADDRESS}/diagrams`,
+}
+
+export const ROUTE_PARAMS = {
+  diagram: {
+    id: "id"
+  }
 }
