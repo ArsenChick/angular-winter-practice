@@ -61,10 +61,6 @@ export class EllipseComponent
     )
   }
 
-  ngOnDestroy(): void {
-    this.subscription$?.unsubscribe()
-  }
-
   selectShape(event: MouseEvent): void {
     event.stopPropagation()
     if (this.isSelected) this.diagramStateService.selectShape(null)
@@ -80,5 +76,9 @@ export class EllipseComponent
       height: 2 * ry,
       ...SELECT_RECT_BASE_PROPS,
     })
+  }
+
+  ngOnDestroy(): void {
+    this.subscription$?.unsubscribe()
   }
 }
