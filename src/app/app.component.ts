@@ -7,5 +7,5 @@ import { AppRoutes } from './constants/routes'
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  public homeRouterLink = `/${AppRoutes.home}`
+  homeRouterLink = `/${AppRoutes.home}`
 }

@@ -1,0 +1,26 @@
+<ng-template #template>
+  <svg:g>
+    <svg:rect
+      *ngIf="isSelected"
+      [attr.x]="selectRect.properties.x"
+      [attr.y]="selectRect.properties.y"
+      [attr.width]="selectRect.properties.width"
+      [attr.height]="selectRect.properties.height"
+      [attr.stroke]="selectRect.properties.strokeColor"
+      [attr.stroke-width]="selectRect.properties.strokeWidth"
+      [attr.fill]="selectRect.properties.fill"
+      stroke-dasharray="10 10"
+      fill-opacity="0"
+    />
+    <svg:ellipse
+      (click)="selectShape($event)"
+      [attr.cx]="shape.properties.x"
+      [attr.cy]="shape.properties.y"
+      [attr.rx]="shape.properties.rx"
+      [attr.ry]="shape.properties.ry"
+      [attr.stroke]="shape.properties.strokeColor"
+      [attr.stroke-width]="shape.properties.strokeWidth"
+      [attr.fill]="shape.properties.fill"
+    />
+  </svg:g>
+</ng-template>

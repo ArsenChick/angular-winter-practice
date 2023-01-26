@@ -3,8 +3,9 @@ import { HttpClient, HttpParams } from '@angular/common/http'
 import { catchError, map, Observable, of } from 'rxjs'
 import { AlertService } from '@full-fledged/alerts'
 
+import { IDiagram } from 'src/app/interfaces/diagram.interface'
 import { URLS } from 'src/app/constants/urls'
-import { Diagram } from 'src/app/interfaces/diagram.interface'
+import { EmptyDiagram } from './constants/shape-consts'
 
 @Injectable({
   providedIn: 'root',
@@ -15,13 +16,13 @@ export class DiagramApiService {
   getDiagramsPage(
     page: number,
     limitPerPage: number
-  ): Observable<{ totalEntries: number; diagrams: Diagram[] }> {
-    const newRequestParams = new HttpParams()
+  ): Observable<{ totalEntries: number; diagrams: IDiagram[] }> {
+    const requestParams = new HttpParams()
       .set('_page', page)
       .set('_limit', limitPerPage)
-    const url = `${URLS.diagrams}?${newRequestParams.toString()}`
+    const url = `${URLS.diagrams}?${requestParams.toString()}`
 
-    return this.http.get<Diagram[]>(url, { observe: 'response' }).pipe(
+    return this.http.get<IDiagram[]>(url, { observe: 'response' }).pipe(
       map((res) => {
         const diagrams = res.body
         const totalEntries = Number(res.headers.get('x-total-count'))
@@ -30,18 +31,26 @@ export class DiagramApiService {
           diagrams: diagrams ?? [],
         }
       }),
-      catchError(this.handleError())
+      catchError(this.handleError({ totalEntries: 0, diagrams: [] }))
     )
   }
 
-  private handleError() {
-    return (
-      error: { message: string }
-    ): Observable<{ totalEntries: number; diagrams: Diagram[] }> => {
+  getDiagram(id: string): Observable<IDiagram> {
+    const requestParams = new HttpParams().set('id', id)
+    const url = `${URLS.diagrams}?${requestParams.toString()}`
+
+    return this.http.get<IDiagram[]>(url).pipe(
+      map((diagramArray) => diagramArray[0] ?? EmptyDiagram),
+      catchError(this.handleError(EmptyDiagram))
+    )
+  }
+
+  private handleError<T>(result: T) {
+    return (error: { message: string }): Observable<T> => {
       this.alertService.danger(
         `Request failed: ${error.message}. Please try again`
       )
-      return of({ totalEntries: 0, diagrams: [] })
+      return of(result)
     }
   }
 }

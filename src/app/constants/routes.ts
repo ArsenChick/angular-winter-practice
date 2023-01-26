@@ -1,4 +1,10 @@
+export const RouteParams = {
+  diagram: {
+    id: "id"
+  }
+}
+
 export const AppRoutes = {
   home: 'home',
-  diagram: 'diagram/:id',
+  diagram: `diagram/:${RouteParams.diagram.id}`,
 }

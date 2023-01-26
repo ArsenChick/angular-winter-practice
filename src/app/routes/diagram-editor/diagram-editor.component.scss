@@ -9,11 +9,17 @@
     height: 100%;
     flex-grow: 1;
 
+    .shapes-sidebar-container {
+      width: 20em;
+      padding: 1em 1em 0;
+      border-right: 1px solid rgb(200, 200, 200);
+    }
+
     .svg-container {
       width: 100%;
     }
 
-    .sidebar-container {
+    .props-sidebar-container {
       width: 30em;
       padding: 1em 1em 0;
       border-left: 1px solid rgb(200, 200, 200);
