@@ -7,7 +7,7 @@ export interface IDiagram {
 }
 
 export interface IIdShape {
-  id: number | null
+  id: string | null
   shape: IShape
 }
 

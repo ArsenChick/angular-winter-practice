@@ -1,0 +1,21 @@
+.mini-field-container {
+  label {
+    display: block;
+    margin-bottom: 0.25em;
+  }
+
+  mat-form-field {
+    width: 5em;
+  }
+
+  .no-bottom-space {
+    margin-bottom: -1.25em;
+  }
+}
+
+.mini-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1em;
+}

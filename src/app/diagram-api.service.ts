@@ -5,7 +5,7 @@ import { AlertService } from '@full-fledged/alerts'
 
 import { IDiagram } from 'src/app/interfaces/diagram.interface'
 import { URLS } from 'src/app/constants/urls'
-import { EmptyDiagram } from './constants/shape-consts'
+import { EMPTY_DIAGRAM } from './constants/shape-consts'
 
 @Injectable({
   providedIn: 'root',
@@ -40,8 +40,8 @@ export class DiagramApiService {
     const url = `${URLS.diagrams}?${requestParams.toString()}`
 
     return this.http.get<IDiagram[]>(url).pipe(
-      map((diagramArray) => diagramArray[0] ?? EmptyDiagram),
-      catchError(this.handleError(EmptyDiagram))
+      map((diagramArray) => diagramArray[0] ?? EMPTY_DIAGRAM),
+      catchError(this.handleError(EMPTY_DIAGRAM))
     )
   }
 

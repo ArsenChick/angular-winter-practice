@@ -1,0 +1,15 @@
+<div class="route-container">
+  <div class="diagram-container">
+    <app-shapes-sidebar class="shapes-sidebar-container"></app-shapes-sidebar>
+    <app-svg-diagram
+      class="svg-container"
+      [selectedShapeId]="selectedId$ | async"
+      [shapes]="(diagramState$ | async)?.components ?? []"
+    ></app-svg-diagram>
+    <app-props-sidebar
+      class="props-sidebar-container"
+      [selectedShapeId]="selectedId$ | async"
+      [title]="(diagramState$ | async)?.title ?? ''"
+    ></app-props-sidebar>
+  </div>
+</div>

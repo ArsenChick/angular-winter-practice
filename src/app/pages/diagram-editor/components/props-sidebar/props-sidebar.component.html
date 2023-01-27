@@ -1,0 +1,59 @@
+<h2>Properties {{ selectedType }}</h2>
+
+<ng-container *ngIf="selectedType; else diagramProps">
+  <ng-container [ngSwitch]="selectedType">
+    <app-ellipse-props
+      *ngSwitchCase="ShapeTypes.Ellipse"
+      [initialProps]="selectedInitialProps"
+      (valuesChanged)="changeShapeSpecificProps($event)"
+    ></app-ellipse-props>
+    <app-line-props
+      *ngSwitchCase="ShapeTypes.Line"
+      [initialProps]="selectedInitialProps"
+      (valuesChanged)="changeShapeSpecificProps($event)"
+    ></app-line-props>
+    <app-rectangle-props
+      *ngSwitchCase="ShapeTypes.Rectangle"
+      [initialProps]="selectedInitialProps"
+      (valuesChanged)="changeShapeSpecificProps($event)"
+    ></app-rectangle-props>
+  </ng-container>
+  <form [formGroup]="baseProps" (input)="updateShape()">
+    <div class="field-container">
+      <label for="stroke-width">Stroke width: </label>
+      <mat-form-field class="no-bottom-space" appearance="outline">
+        <input
+          matInput
+          id="stroke-width"
+          type="number"
+          formControlName="strokeWidth"
+          min="0" max="20"
+        />
+      </mat-form-field>
+    </div>
+    <div class="field-container">
+      <label for="stroke-color">Stroke color: </label>
+      <ngx-colors
+        ngx-colors-trigger
+        formControlName="strokeColor"
+        (input)="updateShape()"
+      ></ngx-colors>
+    </div>
+    <div *ngIf="selectedType !== ShapeTypes.Line" class="field-container">
+      <label for="fill">Fill color: </label>
+      <ngx-colors
+        ngx-colors-trigger
+        formControlName="fill"
+        (input)="updateShape()"
+      ></ngx-colors>
+    </div>
+  </form>
+</ng-container>
+<ng-template #diagramProps>
+  <div class="field-container diagram-name">
+    <label for="title">Title: </label>
+    <mat-form-field class="no-bottom-space" appearance="outline">
+      <input matInput id="title" type="text" [formControl]="titleControl" />
+    </mat-form-field>
+  </div>
+</ng-template>
