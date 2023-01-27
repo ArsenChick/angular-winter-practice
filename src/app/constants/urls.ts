@@ -9,3 +9,7 @@ export const ROUTE_PARAMS = {
     id: "id"
   }
 }
+
+export const APP_ROUTES = {
+  home: '/home'
+}

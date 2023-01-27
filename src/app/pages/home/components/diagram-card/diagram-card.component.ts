@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 
 @Component({
   selector: 'app-diagram-card',
@@ -8,4 +8,10 @@ import { Component, Input } from '@angular/core'
 export class DiagramCardComponent {
   @Input() title = ''
   @Input() id = ''
+
+  @Output() navigateEvent = new EventEmitter<string>()
+
+  navigateToDiagram() {
+    this.navigateEvent.emit(this.id)
+  }
 }

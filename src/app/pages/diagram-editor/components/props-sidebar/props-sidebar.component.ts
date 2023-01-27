@@ -13,10 +13,18 @@ import { NULL_BASE_PROPS } from 'src/app/constants/shape-consts'
 })
 export class PropsSidebarComponent {
   @Input()
-  get selectedShapeId(): number | null {
+  get title(): string | null {
+    return this.titleControl.value
+  }
+  set title(title: string | null) {
+    this.titleControl.setValue(title)
+  }
+
+  @Input()
+  get selectedShapeId(): string | null {
     return this._selectedId
   }
-  set selectedShapeId(newId: number | null) {
+  set selectedShapeId(newId: string | null) {
     this._selectedId = newId
     if (newId !== null) {
       const component = this.diagramStateService.getShape(newId)
@@ -37,7 +45,7 @@ export class PropsSidebarComponent {
 
   ShapeTypes = ShapeType
 
-  title = new FormControl('Untitled')
+  titleControl = new FormControl('')
   baseProps = this.fb.group({
     strokeWidth: 0,
     strokeColor: '',
@@ -46,7 +54,7 @@ export class PropsSidebarComponent {
 
   selectedInitialProps: IBaseProps | null = null
   selectedType: ShapeType | null = null
-  private _selectedId: number | null = null
+  private _selectedId: string | null = null
   private _selectedShapeProps: IBaseProps | null = null
 
   constructor(

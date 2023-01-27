@@ -1,13 +1,4 @@
-import {
-  ShapeType,
-  IBaseProps,
-  Ellipse,
-  IEllipseProps,
-  Line,
-  ILineProps,
-  Rectangle,
-  IRectangleProps,
-} from './shapes.interface'
+import { ShapeType, Ellipse, Line, Rectangle } from './shapes.interface'
 
 const SHAPE_TYPE_MAP = {
   [ShapeType.Ellipse]: new Ellipse(),

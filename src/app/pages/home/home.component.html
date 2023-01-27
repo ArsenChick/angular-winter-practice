@@ -8,6 +8,7 @@
         <app-diagram-card
           [title]="diagram.title"
           [id]="diagram.id"
+          (navigateEvent)="navigateToDiagram($event)"
         ></app-diagram-card>
       </li>
     </ul>
@@ -16,6 +17,7 @@
       [pageIndex]="pageIndex"
       [pageSize]="limitPerPage"
       [length]="diagramsObj.totalEntries"
+      hidePageSize
     ></mat-paginator>
   </div>
 </ng-container>

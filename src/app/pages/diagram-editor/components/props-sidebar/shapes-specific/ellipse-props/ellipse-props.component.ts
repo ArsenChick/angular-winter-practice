@@ -10,6 +10,7 @@ import {
 @Component({
   selector: 'app-ellipse-props',
   templateUrl: './ellipse-props.component.html',
+  styleUrls: ['../shape-specific-props.scss'],
 })
 export class EllipsePropsComponent {
   @Input()

@@ -1,26 +1,30 @@
 <form [formGroup]="ellipseProps" (input)="sendValueToParent()">
-  <div class="field-container">
-    <label for="x">Center X: </label>
-    <mat-form-field class="no-bottom-space" appearance="outline">
-      <input matInput id="x" type="number" formControlName="x" />
-    </mat-form-field>
+  <div class="mini-group">
+    <div class="mini-field-container">
+      <label for="x">Center X: </label>
+      <mat-form-field class="no-bottom-space" appearance="outline">
+        <input matInput id="x" type="number" formControlName="x" />
+      </mat-form-field>
+    </div>
+    <div class="mini-field-container">
+      <label for="y">Center Y: </label>
+      <mat-form-field class="no-bottom-space" appearance="outline">
+        <input matInput id="y" type="number" formControlName="y" />
+      </mat-form-field>
+    </div>
   </div>
-  <div class="field-container">
-    <label for="y">Center Y: </label>
-    <mat-form-field class="no-bottom-space" appearance="outline">
-      <input matInput id="y" type="number" formControlName="y" />
-    </mat-form-field>
-  </div>
-  <div class="field-container">
-    <label for="rx">Radius X: </label>
-    <mat-form-field class="no-bottom-space" appearance="outline">
-      <input matInput id="rx" type="number" formControlName="rx" />
-    </mat-form-field>
-  </div>
-  <div class="field-container">
-    <label for="ry">Radius Y: </label>
-    <mat-form-field class="no-bottom-space" appearance="outline">
-      <input matInput id="ry" type="number" formControlName="ry" />
-    </mat-form-field>
+  <div class="mini-group">
+    <div class="mini-field-container">
+      <label for="rx">Radius X: </label>
+      <mat-form-field class="no-bottom-space" appearance="outline">
+        <input matInput id="rx" type="number" formControlName="rx" />
+      </mat-form-field>
+    </div>
+    <div class="mini-field-container">
+      <label for="ry">Radius Y: </label>
+      <mat-form-field class="no-bottom-space" appearance="outline">
+        <input matInput id="ry" type="number" formControlName="ry" />
+      </mat-form-field>
+    </div>
   </div>
 </form>

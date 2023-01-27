@@ -14,7 +14,7 @@ import { ROUTE_PARAMS } from 'src/app/constants/urls'
 })
 export class DiagramEditorComponent implements OnInit, OnDestroy {
   diagramState$ = this.diagramStateService.diagramState$.pipe(
-    map(diagram => diagram ? diagram.components : [])
+    map((diagram) => diagram ?? { id: '', title: '', components: [] })
   )
   selectedId$ = this.diagramStateService.selectedShapeId$
   noRouteParam = false

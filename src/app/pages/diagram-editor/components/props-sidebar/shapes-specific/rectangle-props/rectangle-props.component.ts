@@ -13,6 +13,7 @@ import {
 @Component({
   selector: 'app-rectangle-props',
   templateUrl: './rectangle-props.component.html',
+  styleUrls: ['../shape-specific-props.scss'],
 })
 export class RectanglePropsComponent {
   @Input()

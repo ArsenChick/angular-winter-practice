@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core'
 import { cloneDeep } from 'lodash'
 import { Subject } from 'rxjs'
+import { v1 as uuidv1 } from 'uuid'
+
 import { DEFAULT_BASE_PROPS } from 'src/app/constants/shape-consts'
 
 import {
@@ -23,7 +25,7 @@ export class DiagramStateService {
   get diagramState$() {
     return this._diagramStateSubject$.asObservable()
   }
-  private _selectedShapeIdSubject$: Subject<number | null> = new Subject()
+  private _selectedShapeIdSubject$: Subject<string | null> = new Subject()
   get selectedShapeId$() {
     return this._selectedShapeIdSubject$.asObservable()
   }
@@ -32,8 +34,8 @@ export class DiagramStateService {
   private diagram: IDrawableDiagram | null = null
 
   initializeDiagramData({ id, title, components }: IDiagram): void {
-    const newComponents = components.map((shape, index) => ({
-      id: index,
+    const newComponents = components.map((shape) => ({
+      id: uuidv1(),
       shape,
     }))
     this.diagram = { id, title, components: newComponents }
@@ -43,13 +45,13 @@ export class DiagramStateService {
   addShape(type: ShapeType): void {
     if (this.diagram === null) return
     const shape = this.shapeFactory.create(type)
-    const id = this.diagram.components.length
+    const id = uuidv1()
     if (shape !== null) this.diagram.components.push({ id, shape })
     this.selectShape(id)
     this.notifyAboutDiagramChange()
   }
 
-  updateShape(id: number, props?: IBaseProps): void {
+  updateShape(id: string, props?: IBaseProps): void {
     if (this.diagram === null) return
     this.diagram.components = this.diagram.components.map((component) => {
       if (component.id !== id) return component
@@ -65,13 +67,13 @@ export class DiagramStateService {
     this.notifyAboutDiagramChange()
   }
 
-  getShape(id: number | null): IIdShape | null {
+  getShape(id: string | null): IIdShape | null {
     if (this.diagram === null || id === null) return null
     const idFound = this.diagram.components.find((shape) => shape.id === id)
     return idFound ?? null
   }
 
-  selectShape(newSelectId: number | null = null): void {
+  selectShape(newSelectId: string | null = null): void {
     this.notifyAboutSelectedChange(newSelectId ?? null)
   }
 
@@ -79,7 +81,7 @@ export class DiagramStateService {
     this._diagramStateSubject$.next(cloneDeep(this.diagram))
   }
 
-  private notifyAboutSelectedChange(id: number | null): void {
+  private notifyAboutSelectedChange(id: string | null): void {
     this._selectedShapeIdSubject$.next(id)
   }
 }

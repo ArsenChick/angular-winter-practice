@@ -42,7 +42,7 @@ export class EllipseComponent
   template!: TemplateRef<EllipseComponent>
   private subscription$?: Subscription
 
-  id: number | null = null
+  id: string | null = null
   shape: Ellipse = new Ellipse(NULL_ELLIPSE_PROPS)
   selectRect: Rectangle = new Rectangle(NULL_RECTANGLE_PROPS)
 

@@ -27,6 +27,7 @@
           id="stroke-width"
           type="number"
           formControlName="strokeWidth"
+          min="0" max="20"
         />
       </mat-form-field>
     </div>
@@ -34,25 +35,25 @@
       <label for="stroke-color">Stroke color: </label>
       <ngx-colors
         ngx-colors-trigger
-        style="display: inline-block; margin: 5px"
         formControlName="strokeColor"
         (input)="updateShape()"
       ></ngx-colors>
     </div>
-    <div class="field-container">
+    <div *ngIf="selectedType !== ShapeTypes.Line" class="field-container">
       <label for="fill">Fill color: </label>
       <ngx-colors
         ngx-colors-trigger
-        style="display: inline-block; margin: 5px"
         formControlName="fill"
         (input)="updateShape()"
       ></ngx-colors>
     </div>
   </form>
 </ng-container>
-<ng-template #diagramProps class="field-container">
-  <label for="title">Title: </label>
-  <mat-form-field class="no-bottom-space" appearance="outline">
-    <input matInput id="title" type="text" [formControl]="title" />
-  </mat-form-field>
+<ng-template #diagramProps>
+  <div class="field-container diagram-name">
+    <label for="title">Title: </label>
+    <mat-form-field class="no-bottom-space" appearance="outline">
+      <input matInput id="title" type="text" [formControl]="titleControl" />
+    </mat-form-field>
+  </div>
 </ng-template>

@@ -6,6 +6,7 @@ import { ShapeType } from 'src/app/interfaces/shapes.interface'
 @Component({
   selector: 'app-shapes-sidebar',
   templateUrl: './shapes-sidebar.component.html',
+  styleUrls: ['./shapes-sidebar.component.scss']
 })
 export class ShapesSidebarComponent {
   constructor(private diagramStateService: DiagramStateService) {}

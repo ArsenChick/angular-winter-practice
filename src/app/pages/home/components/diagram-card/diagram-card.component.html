@@ -2,7 +2,7 @@
   <mat-card-content class="card-content">
     <span>{{ title }}</span>
     <div class="separator"></div>
-    <button mat-icon-button color="primary" matTooltip="Open">
+    <button (click)="navigateToDiagram()" mat-icon-button color="primary" matTooltip="Open">
       <mat-icon>launch</mat-icon>
     </button>
     <button mat-icon-button color="primary" matTooltip="Delete">

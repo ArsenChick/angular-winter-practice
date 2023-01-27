@@ -13,7 +13,7 @@ import { SHAPE_COMPONENT_TYPE_MAP } from 'src/app/constants/component-map'
   styleUrls: ['./svg-diagram.component.scss'],
 })
 export class SvgDiagramComponent {
-  @Input() selectedShapeId: number | null = null
+  @Input() selectedShapeId: string | null = null
   @Input()
   get shapes(): IIdShape[] {
     return this._shapes

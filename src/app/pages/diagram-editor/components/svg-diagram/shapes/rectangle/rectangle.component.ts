@@ -41,7 +41,7 @@ export class RectangleComponent
   template!: TemplateRef<RectangleComponent>
   private subscription$?: Subscription
 
-  id: number | null = null
+  id: string | null = null
   shape: Rectangle = new Rectangle(NULL_RECTANGLE_PROPS)
   selectRect: Rectangle = new Rectangle(NULL_RECTANGLE_PROPS)
 

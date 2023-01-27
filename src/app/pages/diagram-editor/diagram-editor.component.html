@@ -4,11 +4,12 @@
     <app-svg-diagram
       class="svg-container"
       [selectedShapeId]="selectedId$ | async"
-      [shapes]="diagramState$ | async"
+      [shapes]="(diagramState$ | async)?.components ?? []"
     ></app-svg-diagram>
     <app-props-sidebar
       class="props-sidebar-container"
       [selectedShapeId]="selectedId$ | async"
+      [title]="(diagramState$ | async)?.title ?? ''"
     ></app-props-sidebar>
   </div>
 </div>

@@ -7,6 +7,7 @@ import { NULL_BASE_PROPS } from 'src/app/constants/shape-consts'
 @Component({
   selector: 'app-line-props',
   templateUrl: './line-props.component.html',
+  styleUrls: ['../shape-specific-props.scss'],
 })
 export class LinePropsComponent {
   @Input()

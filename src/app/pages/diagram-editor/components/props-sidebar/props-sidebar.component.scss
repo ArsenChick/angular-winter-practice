@@ -2,8 +2,24 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 1em;
+
+  mat-form-field {
+    width: 5em;
+  }
 
   .no-bottom-space {
-    margin-bottom: -1.25em
+    margin-bottom: -1.25em;
+  }
+}
+
+ngx-colors {
+  display: inline-block;
+  margin: 5px;
+}
+
+.field-container.diagram-name {
+  mat-form-field {
+    width: 75%;
   }
 }

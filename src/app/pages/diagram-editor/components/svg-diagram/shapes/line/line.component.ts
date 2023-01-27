@@ -42,7 +42,7 @@ export class LineComponent
   template!: TemplateRef<LineComponent>
   private subscription$?: Subscription
 
-  id: number | null = null
+  id: string | null = null
   shape: Line = new Line(NULL_LINE_PROPS)
   selectRect: Rectangle = new Rectangle(NULL_RECTANGLE_PROPS)
 
